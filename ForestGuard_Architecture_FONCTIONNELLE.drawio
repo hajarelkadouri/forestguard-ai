@@ -1,0 +1,346 @@
+<mxfile host="app.diagrams.net" modified="2025-01-06T12:35:00.000Z" agent="Kiro" version="22.1.0">
+  <diagram name="ForestGuard Fonctionnelle" id="functional-arch">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TITRE -->
+        <mxCell id="title" value="🌲 ForestGuard AI - Architecture Fonctionnelle" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1200" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="subtitle" value="Processus Métier de Surveillance de la Déforestation" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=0;fontColor=#666;" vertex="1" parent="1">
+          <mxGeometry x="200" y="70" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ACTEURS -->
+        <mxCell id="actors-title" value="ACTEURS" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1565C0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="130" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Chercheur -->
+        <mxCell id="researcher" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="170" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="researcher-icon" value="👨‍🔬" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="70" y="180" width="40" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="researcher-text" value="CHERCHEUR&#xa;Environnemental" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#1565C0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="215" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ONG -->
+        <mxCell id="ngo" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="270" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ngo-icon" value="🌍" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="70" y="280" width="40" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ngo-text" value="ONG&#xa;Environnementale" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="50" y="315" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Gouvernement -->
+        <mxCell id="gov" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="370" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="gov-icon" value="🏛️" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="70" y="380" width="40" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="gov-text" value="GOUVERNEMENT&#xa;Autorités" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="50" y="415" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Entreprise -->
+        <mxCell id="company" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="470" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-icon" value="🏢" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="70" y="480" width="40" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="company-text" value="ENTREPRISE&#xa;Forestière" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#880E4F;" vertex="1" parent="1">
+          <mxGeometry x="50" y="515" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- PROCESSUS FONCTIONNELS -->
+        
+        <!-- 1. COLLECTE DE DONNÉES -->
+        <mxCell id="collect-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="250" y="130" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="collect-icon" value="📡" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="270" y="150" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="collect-title" value="1. COLLECTE DONNÉES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#1565C0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="195" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="collect-details" value="• Images satellites&#xa;• Données FAO/INPE&#xa;• Géolocalisation GPS&#xa;• Classification automatique" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="260" y="215" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 2. ANALYSE ET TRAITEMENT -->
+        <mxCell id="analyze-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="500" y="130" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="analyze-icon" value="🔍" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="520" y="150" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="analyze-title" value="2. ANALYSE IA" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="500" y="195" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="analyze-details" value="• Détection changements&#xa;• Classification légal/illégal&#xa;• Calcul surfaces&#xa;• Évaluation confiance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="510" y="215" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 3. VISUALISATION -->
+        <mxCell id="viz-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="750" y="130" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="viz-icon" value="🗺️" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="770" y="150" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="viz-title" value="3. VISUALISATION" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="750" y="195" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="viz-details" value="• Cartes interactives&#xa;• Filtrage par pays&#xa;• Statistiques temps réel&#xa;• Alertes visuelles" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="760" y="215" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 4. ALERTES ET RAPPORTS -->
+        <mxCell id="alert-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="130" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alert-icon" value="🚨" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="150" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alert-title" value="4. ALERTES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#880E4F;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="195" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alert-details" value="• Notifications automatiques&#xa;• Rapports PDF&#xa;• Seuils personnalisés&#xa;• Historique activités" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="215" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 5. PRISE DE DÉCISION -->
+        <mxCell id="decision-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="130" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decision-icon" value="⚖️" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="150" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decision-title" value="5. DÉCISION" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#4A148C;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="195" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decision-details" value="• Actions correctives&#xa;• Sanctions légales&#xa;• Programmes protection&#xa;• Politiques publiques" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="215" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- FLÈCHES PROCESSUS -->
+        <mxCell id="arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;strokeColor=#1976D2;" edge="1" parent="1" source="collect-box" target="analyze-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;strokeColor=#F57C00;" edge="1" parent="1" source="analyze-box" target="viz-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;strokeColor=#388E3C;" edge="1" parent="1" source="viz-box" target="alert-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;strokeColor=#C2185B;" edge="1" parent="1" source="alert-box" target="decision-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- CAS D'USAGE -->
+        <mxCell id="usecases-title" value="CAS D'USAGE MÉTIER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="250" y="300" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- UC1: Surveillance -->
+        <mxCell id="uc1-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="350" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc1-title" value="UC1: SURVEILLANCE CONTINUE" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1565C0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="360" width="260" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc1-details" value="🎯 Objectif: Surveiller 78 pays en temps réel&#xa;👤 Acteur: Chercheur environnemental&#xa;📊 Résultat: Détection zones à risque&#xa;⏱️ Fréquence: Quotidienne" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="260" y="385" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC2: Analyse Impact -->
+        <mxCell id="uc2-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F57C00;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="350" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc2-title" value="UC2: ANALYSE D'IMPACT" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="570" y="360" width="260" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc2-details" value="🎯 Objectif: Évaluer impact environnemental&#xa;👤 Acteur: ONG environnementale&#xa;📊 Résultat: Rapport détaillé zones critiques&#xa;⏱️ Fréquence: Mensuelle" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="570" y="385" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC3: Contrôle Légal -->
+        <mxCell id="uc3-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#388E3C;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="350" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc3-title" value="UC3: CONTRÔLE LÉGAL" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="880" y="360" width="260" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc3-details" value="🎯 Objectif: Vérifier conformité légale&#xa;👤 Acteur: Autorités gouvernementales&#xa;📊 Résultat: Identification activités illégales&#xa;⏱️ Fréquence: Hebdomadaire" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="880" y="385" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- UC4: Audit Entreprise -->
+        <mxCell id="uc4-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C2185B;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="350" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc4-title" value="UC4: AUDIT ENTREPRISE" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#880E4F;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="360" width="260" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc4-details" value="🎯 Objectif: Audit pratiques forestières&#xa;👤 Acteur: Entreprise forestière&#xa;📊 Résultat: Certification durabilité&#xa;⏱️ Fréquence: Trimestrielle" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="385" width="260" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- FLUX FONCTIONNELS -->
+        <mxCell id="flows-title" value="FLUX FONCTIONNELS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="250" y="480" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Flux 1: Données vers Analyse -->
+        <mxCell id="flow1-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="530" width="350" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow1-title" value="FLUX 1: ACQUISITION → TRAITEMENT" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1565C0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="540" width="350" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow1-details" value="📡 Images satellites → 🔍 Algorithmes IA → 📊 Classification&#xa;⏱️ Temps réel | 🎯 Précision 93% | 📍 Géolocalisation GPS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="260" y="565" width="330" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Flux 2: Analyse vers Décision -->
+        <mxCell id="flow2-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="630" y="530" width="350" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow2-title" value="FLUX 2: ANALYSE → ALERTE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="630" y="540" width="350" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow2-details" value="🔍 Détection anomalies → 🚨 Alertes automatiques → ⚖️ Actions&#xa;📈 Seuils configurables | 📧 Notifications | 📋 Rapports PDF" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="640" y="565" width="330" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Flux 3: Décision vers Action -->
+        <mxCell id="flow3-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="530" width="350" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow3-title" value="FLUX 3: DÉCISION → ACTION" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="540" width="350" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="flow3-details" value="⚖️ Évaluation légale → 🛡️ Mesures protection → 🌱 Restauration&#xa;🏛️ Politiques publiques | 💰 Sanctions | 🌳 Reboisement" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="565" width="330" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- CONNEXIONS ACTEURS -->
+        <mxCell id="actor-arrow1" value="Consulte" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1976D2;fontSize=10;fontColor=#1565C0;" edge="1" parent="1" source="researcher" target="uc1-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="actor-arrow2" value="Analyse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#388E3C;fontSize=10;fontColor=#2E7D32;" edge="1" parent="1" source="ngo" target="uc2-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="actor-arrow3" value="Contrôle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#F57C00;fontSize=10;fontColor=#E65100;" edge="1" parent="1" source="gov" target="uc3-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="actor-arrow4" value="Audite" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C2185B;fontSize=10;fontColor=#880E4F;" edge="1" parent="1" source="company" target="uc4-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- MÉTRIQUES FONCTIONNELLES -->
+        <mxCell id="metrics-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#757575;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="650" width="1200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metrics-title" value="📊 MÉTRIQUES FONCTIONNELLES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="250" y="660" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Métriques colonnes -->
+        <mxCell id="metric1" value="🌍 COUVERTURE&#xa;78 Pays&#xa;1,890 Zones&#xa;5 Continents" style="text;html=1;strokeColor=none;fillColor=#E3F2FD;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#1565C0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric2" value="⏱️ PERFORMANCE&#xa;< 3 sec chargement&#xa;93% précision&#xa;Temps réel" style="text;html=1;strokeColor=none;fillColor=#FFF3E0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#E65100;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric3" value="📊 DONNÉES&#xa;2020-2023&#xa;Sources officielles&#xa;Mises à jour quotidiennes" style="text;html=1;strokeColor=none;fillColor=#E8F5E9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#2E7D32;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric4" value="🚨 ALERTES&#xa;Notifications auto&#xa;Seuils configurables&#xa;Rapports PDF" style="text;html=1;strokeColor=none;fillColor=#FCE4EC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#880E4F;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric5" value="👥 UTILISATEURS&#xa;Chercheurs&#xa;ONG&#xa;Gouvernements" style="text;html=1;strokeColor=none;fillColor=#F3E5F5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#4A148C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric6" value="💰 IMPACT&#xa;$3.4M revenus&#xa;1M hectares protégés&#xa;ROI 18 mois" style="text;html=1;strokeColor=none;fillColor=#E1F5FE;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#0277BD;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric7" value="🔒 SÉCURITÉ&#xa;Données chiffrées&#xa;Accès contrôlé&#xa;Audit trail" style="text;html=1;strokeColor=none;fillColor=#EFEBE9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#5D4037;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="metric8" value="🌱 DURABILITÉ&#xa;Empreinte carbone&#xa;Green IT&#xa;Impact positif" style="text;html=1;strokeColor=none;fillColor=#E0F2F1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontColor=#00695C;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- FOOTER -->
+        <mxCell id="footer" value="🌲 ForestGuard AI - Architecture Fonctionnelle v1.0 | Processus Métier de Surveillance Déforestation | Impact Environnemental Mesurable" style="text;html=1;strokeColor=none;fillColor=#EEEEEE;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontColor=#616161;" vertex="1" parent="1">
+          <mxGeometry x="250" y="800" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

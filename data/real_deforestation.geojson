@@ -1,0 +1,119 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Br\u00e9sil",
+        "region": "Par\u00e1",
+        "classification": "Ill\u00e9gale",
+        "area_ha": 12450.5,
+        "year": 2023,
+        "source": "INPE/PRODES"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -54.5,
+              -3.5
+            ],
+            [
+              -54.0,
+              -3.5
+            ],
+            [
+              -54.0,
+              -3.0
+            ],
+            [
+              -54.5,
+              -3.0
+            ],
+            [
+              -54.5,
+              -3.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Br\u00e9sil",
+        "region": "Mato Grosso",
+        "classification": "L\u00e9gale",
+        "area_ha": 8920.3,
+        "year": 2023,
+        "source": "INPE/PRODES"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -56.0,
+              -11.0
+            ],
+            [
+              -55.5,
+              -11.0
+            ],
+            [
+              -55.5,
+              -10.5
+            ],
+            [
+              -56.0,
+              -10.5
+            ],
+            [
+              -56.0,
+              -11.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "country": "Br\u00e9sil",
+        "region": "Rond\u00f4nia",
+        "classification": "Ill\u00e9gale",
+        "area_ha": 15670.8,
+        "year": 2023,
+        "source": "INPE/PRODES"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -63.0,
+              -10.0
+            ],
+            [
+              -62.5,
+              -10.0
+            ],
+            [
+              -62.5,
+              -9.5
+            ],
+            [
+              -63.0,
+              -9.5
+            ],
+            [
+              -63.0,
+              -10.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

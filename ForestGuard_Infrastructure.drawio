@@ -1,0 +1,239 @@
+n)<mxfile host="app.diagrams.net" modified="2024-12-03T12:00:00.000Z" agent="Kiro" version="22.1.0">
+  <diagram name="Infrastructure" id="infrastructure">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <mxCell id="title" value="ForestGuard AI - Architecture Infrastructure AWS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="800" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="internet" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="700" y="100" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="internet-label" value="INTERNET" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1976D2;" vertex="1" parent="1">
+          <mxGeometry x="750" y="135" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cloudflare-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="250" width="300" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cloudflare-logo" value="CLOUDFLARE CDN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#F57C00;" vertex="1" parent="1">
+          <mxGeometry x="670" y="270" width="240" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cloudflare-text" value="WAF + DDoS Protection&#xa;SSL/TLS Termination&#xa;Global CDN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="670" y="310" width="240" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-internet-cf" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#1976D2;" edge="1" parent="1" source="internet" target="cloudflare-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="aws-cloud" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#FF9800;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="1400" height="900" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="aws-label" value="AWS CLOUD" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#FF9800;" vertex="1" parent="1">
+          <mxGeometry x="120" y="430" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alb-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="500" width="300" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alb-title" value="APPLICATION LOAD BALANCER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#388E3C;" vertex="1" parent="1">
+          <mxGeometry x="670" y="515" width="260" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alb-text" value="HTTPS Port 443&#xa;Health Checks + Sticky Sessions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="670" y="550" width="260" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-cf-alb" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#F57C00;fontSize=11;fontColor=#F57C00;fontStyle=1;" edge="1" parent="1" source="cloudflare-box" target="alb-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ecs-cluster" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0277BD;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="680" width="1200" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ecs-title" value="ECS FARGATE CLUSTER" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#0277BD;" vertex="1" parent="1">
+          <mxGeometry x="220" y="690" width="250" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit1-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0277BD;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="740" width="280" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit1-title" value="STREAMLIT APP 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#0277BD;" vertex="1" parent="1">
+          <mxGeometry x="270" y="755" width="240" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit1-text" value="1 vCPU, 2 GB RAM&#xa;Port 8501&#xa;Auto-scaling" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="270" y="790" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit2-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0277BD;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="570" y="740" width="280" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit2-title" value="STREAMLIT APP 2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#0277BD;" vertex="1" parent="1">
+          <mxGeometry x="590" y="755" width="240" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit2-text" value="1 vCPU, 2 GB RAM&#xa;Port 8501&#xa;Auto-scaling" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="590" y="790" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit3-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0277BD;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="890" y="740" width="280" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit3-title" value="STREAMLIT APP 3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#0277BD;" vertex="1" parent="1">
+          <mxGeometry x="910" y="755" width="240" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="streamlit3-text" value="1 vCPU, 2 GB RAM&#xa;Port 8501&#xa;Auto-scaling" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="910" y="790" width="240" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-alb-s1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#388E3C;" edge="1" parent="1" source="alb-box" target="streamlit1-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-alb-s2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#388E3C;" edge="1" parent="1" source="alb-box" target="streamlit2-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-alb-s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#388E3C;" edge="1" parent="1" source="alb-box" target="streamlit3-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="data-layer" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="950" width="1200" height="300" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="data-title" value="DATA LAYER" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#7B1FA2;" vertex="1" parent="1">
+          <mxGeometry x="220" y="960" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="redis-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D32F2F;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1020" width="300" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="redis-title" value="ELASTICACHE REDIS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#D32F2F;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1040" width="260" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="redis-text" value="cache.t3.medium&#xa;3 GB RAM&#xa;Primary + Replica&#xa;Multi-AZ&#xa;Cache GeoJSON&#xa;Sessions utilisateurs" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="270" y="1080" width="260" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="rds-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1976D2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1020" width="300" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="rds-title" value="RDS POSTGRESQL + POSTGIS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#1976D2;" vertex="1" parent="1">
+          <mxGeometry x="620" y="1040" width="260" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="rds-text" value="db.t3.medium&#xa;4 GB RAM, 100 GB SSD&#xa;Multi-AZ&#xa;Read Replica&#xa;Automated Backups&#xa;Point-in-Time Recovery" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="620" y="1080" width="260" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#FF6F00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="950" y="1020" width="300" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-title" value="AMAZON S3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#FF6F00;" vertex="1" parent="1">
+          <mxGeometry x="970" y="1040" width="260" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-text" value="GeoJSON Files&#xa;Static Assets&#xa;Backups&#xa;Versioning Enabled&#xa;Lifecycle Policies&#xa;CloudFront CDN" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="970" y="1080" width="260" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-s1-redis" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D32F2F;dashed=1;" edge="1" parent="1" source="streamlit1-box" target="redis-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-s2-rds" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1976D2;dashed=1;" edge="1" parent="1" source="streamlit2-box" target="rds-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-s3-s3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#FF6F00;dashed=1;" edge="1" parent="1" source="streamlit3-box" target="s3-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="monitoring-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#757575;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="500" width="160" height="400" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="monitoring-title" value="MONITORING" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="510" width="160" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cloudwatch-item" value="CloudWatch&#xa;Logs + Metrics" style="text;html=1;strokeColor=none;fillColor=#E3F2FD;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="560" width="130" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="datadog-item" value="Datadog&#xa;APM + Traces" style="text;html=1;strokeColor=none;fillColor=#E8F5E9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="630" width="130" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="sentry-item" value="Sentry&#xa;Error Tracking" style="text;html=1;strokeColor=none;fillColor=#FFF3E0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="700" width="130" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="alerts-item" value="Alertes&#xa;Slack + Email" style="text;html=1;strokeColor=none;fillColor=#FCE4EC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="770" width="130" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uptime-item" value="Uptime&#xa;99.9% SLA" style="text;html=1;strokeColor=none;fillColor=#F3E5F5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="840" width="130" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stats-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#757575;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="500" width="140" height="400" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stats-title" value="STATS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="40" y="510" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat1" value="1,000 Users/day" style="text;html=1;strokeColor=none;fillColor=#E3F2FD;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat2" value="100 Req/sec" style="text;html=1;strokeColor=none;fillColor=#E8F5E9;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="620" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat3" value="Response 2s" style="text;html=1;strokeColor=none;fillColor=#FFF3E0;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="680" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat4" value="100 GB Data" style="text;html=1;strokeColor=none;fillColor=#FCE4EC;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="740" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat5" value="$447/mois" style="text;html=1;strokeColor=none;fillColor=#F3E5F5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="800" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="stat6" value="Auto-Scaling" style="text;html=1;strokeColor=none;fillColor=#E1F5FE;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#424242;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="860" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="footer" value="ForestGuard AI - Production Infrastructure | AWS Multi-AZ | Auto-Scaling | 99.9% Uptime SLA" style="text;html=1;strokeColor=none;fillColor=#EEEEEE;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#616161;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1280" width="1200" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
