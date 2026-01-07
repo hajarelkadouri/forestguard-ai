@@ -11,13 +11,207 @@ import numpy as np
 from shapely.geometry import Point, Polygon
 from PIL import Image
 import io, base64, random, math
+import plotly.express as px
+import plotly.graph_objects as go
+import pandas as pd
 
 # Configuration
 st.set_page_config(
     page_title="ForestGuard AI", 
     layout="wide",
-    page_icon="🌲"
+    page_icon="🌲",
+    initial_sidebar_state="collapsed"
 )
+
+# CSS personnalisé pour une mise en forme professionnelle
+st.markdown("""
+<style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    /* Variables CSS */
+    :root {
+        --primary-color: #2E7D32;
+        --secondary-color: #4CAF50;
+        --accent-color: #81C784;
+        --danger-color: #D32F2F;
+        --warning-color: #F57C00;
+        --info-color: #1976D2;
+        --background-light: #F8F9FA;
+        --text-dark: #2C3E50;
+        --border-color: #E0E0E0;
+        --shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Styles généraux */
+    .main .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    /* Header avec logo */
+    .header-container {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow);
+        color: white;
+        text-align: center;
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .logo {
+        font-size: 3rem;
+        background: linear-gradient(45deg, #81C784, #A5D6A7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+    
+    .main-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 300;
+        margin: 0.5rem 0 0 0;
+        opacity: 0.9;
+    }
+    
+    /* Conteneurs avec encadrés */
+    .custom-container {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        margin-bottom: 1.5rem;
+    }
+    
+    .controls-container {
+        background: var(--background-light);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border-left: 4px solid var(--primary-color);
+        margin-bottom: 2rem;
+    }
+    
+    .kpi-container {
+        background: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color);
+        text-align: center;
+        transition: transform 0.2s ease;
+    }
+    
+    .kpi-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Sections avec titres colorés */
+    .section-header {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 10px 10px 0 0;
+        margin: 0 -1.5rem 1.5rem -1.5rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+    
+    .analytics-section {
+        background: white;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        margin: 2rem 0;
+    }
+    
+    .chart-container {
+        background: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+    }
+    
+    /* Badges de statut */
+    .status-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin: 0.2rem;
+    }
+    
+    .status-critique {
+        background-color: #FFEBEE;
+        color: var(--danger-color);
+        border: 1px solid #FFCDD2;
+    }
+    
+    .status-eleve {
+        background-color: #FFF3E0;
+        color: var(--warning-color);
+        border: 1px solid #FFCC02;
+    }
+    
+    .status-modere {
+        background-color: #E3F2FD;
+        color: var(--info-color);
+        border: 1px solid #BBDEFB;
+    }
+    
+    .status-faible {
+        background-color: #E8F5E8;
+        color: var(--primary-color);
+        border: 1px solid #C8E6C9;
+    }
+    
+    /* Amélioration des métriques Streamlit */
+    [data-testid="metric-container"] {
+        background: white;
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 2rem;
+        }
+        .subtitle {
+            font-size: 1rem;
+        }
+        .logo {
+            font-size: 2rem;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # Données géographiques réalistes - TOUS LES PAYS DU MONDE
 COUNTRIES = {
@@ -582,24 +776,174 @@ def generate_deforestation_overlay(country, type_deforestation, w=800, h=400):
         data[active_pixels, 3] = alpha[active_pixels]
     
     return data, bounds
-# Interface utilisateur
-st.title("ForestGuard AI - Dashboard")
-st.markdown("**Analyse de déforestation par pays - MONDE ENTIER**")
+
+def calculate_country_kpis(country_data):
+    """Calcule les KPIs pour un pays donné"""
+    zones = country_data["deforestation_zones"]
+    
+    total_zones = len(zones)
+    avg_intensity = np.mean([zone["intensity"] for zone in zones])
+    high_risk_zones = len([zone for zone in zones if zone["intensity"] > 0.7])
+    total_area = sum([zone["size"] for zone in zones])
+    
+    # Calcul du risque global
+    risk_level = "Faible"
+    if avg_intensity > 0.7:
+        risk_level = "Critique"
+    elif avg_intensity > 0.5:
+        risk_level = "Élevé"
+    elif avg_intensity > 0.3:
+        risk_level = "Modéré"
+    
+    return {
+        "total_zones": total_zones,
+        "avg_intensity": avg_intensity,
+        "high_risk_zones": high_risk_zones,
+        "total_area": total_area,
+        "risk_level": risk_level
+    }
+
+def create_intensity_chart(zones):
+    """Crée un graphique en barres des intensités par zone"""
+    df = pd.DataFrame([
+        {"Zone": zone["name"], "Intensité": zone["intensity"], "Taille": zone["size"]}
+        for zone in zones
+    ])
+    
+    # Couleurs basées sur l'intensité
+    colors = ['#2E8B57' if x < 0.4 else '#FFD700' if x < 0.7 else '#DC143C' for x in df["Intensité"]]
+    
+    fig = go.Figure(data=[
+        go.Bar(
+            x=df["Zone"],
+            y=df["Intensité"],
+            marker_color=colors,
+            text=[f"{x:.2f}" for x in df["Intensité"]],
+            textposition='auto',
+            hovertemplate='<b>%{x}</b><br>Intensité: %{y:.2f}<br>Taille: %{customdata} km²<extra></extra>',
+            customdata=df["Taille"]
+        )
+    ])
+    
+    fig.update_layout(
+        title="Distribution de l'Intensité de Déforestation par Zone",
+        xaxis_title="Zones",
+        yaxis_title="Intensité (0-1)",
+        height=400,
+        showlegend=False,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(size=12),
+        xaxis=dict(tickangle=45)
+    )
+    
+    return fig
+
+def create_intensity_pie_chart(zones):
+    """Crée un graphique en secteurs des catégories d'intensité"""
+    low = len([z for z in zones if z["intensity"] < 0.4])
+    medium = len([z for z in zones if 0.4 <= z["intensity"] < 0.7])
+    high = len([z for z in zones if z["intensity"] >= 0.7])
+    
+    labels = ['Faible (0-0.4)', 'Modéré (0.4-0.7)', 'Élevé (0.7-1.0)']
+    values = [low, medium, high]
+    colors = ['#2E8B57', '#FFD700', '#DC143C']
+    
+    # Filtrer les valeurs nulles
+    filtered_data = [(l, v, c) for l, v, c in zip(labels, values, colors) if v > 0]
+    if filtered_data:
+        labels, values, colors = zip(*filtered_data)
+    
+    fig = go.Figure(data=[go.Pie(
+        labels=labels,
+        values=values,
+        marker_colors=colors,
+        textinfo='label+percent+value',
+        texttemplate='%{label}<br>%{value} zones<br>(%{percent})',
+        hovertemplate='<b>%{label}</b><br>Zones: %{value}<br>Pourcentage: %{percent}<extra></extra>'
+    )])
+    
+    fig.update_layout(
+        title="Répartition des Zones par Niveau d'Intensité",
+        height=400,
+        showlegend=True,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(size=12)
+    )
+    
+    return fig
+
+def create_scatter_plot(zones):
+    """Crée un graphique de dispersion taille vs intensité"""
+    df = pd.DataFrame([
+        {"Zone": zone["name"], "Intensité": zone["intensity"], "Taille": zone["size"]}
+        for zone in zones
+    ])
+    
+    colors = ['#2E8B57' if x < 0.4 else '#FFD700' if x < 0.7 else '#DC143C' for x in df["Intensité"]]
+    
+    fig = go.Figure(data=go.Scatter(
+        x=df["Taille"],
+        y=df["Intensité"],
+        mode='markers+text',
+        marker=dict(
+            size=12,
+            color=colors,
+            line=dict(width=2, color='white')
+        ),
+        text=df["Zone"],
+        textposition="top center",
+        textfont=dict(size=10),
+        hovertemplate='<b>%{text}</b><br>Taille: %{x} km²<br>Intensité: %{y:.2f}<extra></extra>'
+    ))
+    
+    fig.update_layout(
+        title="Relation Taille des Zones vs Intensité de Déforestation",
+        xaxis_title="Taille de la Zone (km²)",
+        yaxis_title="Intensité (0-1)",
+        height=400,
+        showlegend=False,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font=dict(size=12)
+    )
+    
+    return fig
+# Interface utilisateur avec design professionnel
+# Header avec logo
+st.markdown("""
+<div class="header-container">
+    <div class="logo-container">
+        <div class="logo">🌲</div>
+        <div>
+            <h1 class="main-title">ForestGuard AI</h1>
+            <p class="subtitle">Système de Surveillance de la Déforestation Mondiale</p>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Contrôles dans un conteneur encadré
+st.markdown('<div class="controls-container">', unsafe_allow_html=True)
+st.markdown("### Paramètres de Visualisation")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    country = st.selectbox("Pays", list(COUNTRIES.keys()))
+    country = st.selectbox("Sélectionner un Pays", list(COUNTRIES.keys()))
 
 with col2:
     type_deforestation = st.radio(
-        "Type de déforestation",
+        "Type de Déforestation",
         ["Déforestation Légale", "Déforestation Illégale"]
     )
 
 with col3:
-    resolution = st.selectbox("Résolution", 
+    resolution = st.selectbox("Résolution de la Carte", 
                              ["Standard (800x400)", "Haute (1200x600)"])
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Résolution
 if "Haute" in resolution:
@@ -616,6 +960,10 @@ with st.spinner("Génération rapide..."):
     overlay_data, bounds = cached_generate_overlay(country, type_deforestation, w, h)
 
 if overlay_data is not None:
+    # Conteneur pour la carte
+    st.markdown('<div class="custom-container">', unsafe_allow_html=True)
+    st.markdown("### Carte Interactive de Déforestation")
+    
     # Convertir en image
     img = Image.fromarray(overlay_data)
     buf = io.BytesIO()
@@ -655,32 +1003,183 @@ if overlay_data is not None:
     map_key = f"map_{country}_{hash(str(bounds))}"
     st_folium(m, width=1400, height=600, key=map_key)
     
-    # Stats
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Section Statistiques avec encadrés
+    st.markdown('<div class="custom-container">', unsafe_allow_html=True)
+    st.markdown("### Statistiques Générales")
+    
     col1, col2 = st.columns(2)
+    zones_info = COUNTRIES[country]["deforestation_zones"]
+    
     with col1:
-        st.markdown("### Statistiques")
-        zones_info = COUNTRIES[country]["deforestation_zones"]
-        st.metric("Pays", country)
-        st.metric("Zones détectées", len(zones_info))
-        st.metric("Type", type_deforestation.split(" ")[1])
+        st.metric("Pays Analysé", country)
+        st.metric("Zones Détectées", len(zones_info))
+        st.metric("Type d'Analyse", type_deforestation.split(" ")[1])
         
     with col2:
-        st.markdown("### Zones de Déforestation")
-        for zone in zones_info:
-            intensity_text = "Élevée" if zone["intensity"] > 0.7 else "Moyenne" if zone["intensity"] > 0.5 else "Faible"
-            st.write(f"**{zone['name']}** - Intensité: {intensity_text}")
+        st.markdown("**Zones de Déforestation Identifiées:**")
+        for zone in zones_info[:5]:  # Limiter à 5 zones pour l'affichage
+            intensity_level = "Critique" if zone["intensity"] > 0.7 else "Élevée" if zone["intensity"] > 0.5 else "Modérée" if zone["intensity"] > 0.3 else "Faible"
+            badge_class = f"status-{intensity_level.lower()}"
+            st.markdown(f"""
+            <div style="margin: 0.3rem 0;">
+                <strong>{zone['name']}</strong> 
+                <span class="status-badge {badge_class}">{intensity_level}</span>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        if len(zones_info) > 5:
+            st.markdown(f"*... et {len(zones_info) - 5} autres zones*")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("---")
-st.markdown(f"""
-### Caractéristiques du système
-- **{len(COUNTRIES)} pays** disponibles dans le monde entier
-- **ImageOverlay** : Technique professionnelle GIS
-- **Frontières exactes** : Pas de zones dans l'océan
-- **Déforestation réaliste** : Basée sur vraies zones forestières
-- **Interface simple** : Sans complexité inutile
-- **Formes organiques** : Rendu naturel
-- **Performance optimisée** : Génération ultra-rapide
-""")
+    # Section Analytics avec design professionnel
+    st.markdown("""
+    <div class="analytics-section">
+        <div class="section-header">
+            Analyse Détaillée des Données
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Calculer les KPIs
+    kpis = calculate_country_kpis(COUNTRIES[country])
+    
+    # KPIs avec encadrés colorés
+    st.markdown("#### Indicateurs Clés de Performance")
+    kpi_col1, kpi_col2, kpi_col3, kpi_col4, kpi_col5 = st.columns(5)
+    
+    with kpi_col1:
+        st.markdown('<div class="kpi-container">', unsafe_allow_html=True)
+        st.metric(
+            label="Zones Totales",
+            value=kpis["total_zones"],
+            help="Nombre total de zones de déforestation identifiées"
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with kpi_col2:
+        st.markdown('<div class="kpi-container">', unsafe_allow_html=True)
+        st.metric(
+            label="Intensité Moyenne",
+            value=f"{kpis['avg_intensity']:.2f}",
+            delta=f"{kpis['avg_intensity']-0.5:.2f}" if kpis['avg_intensity'] > 0.5 else None,
+            delta_color="inverse",
+            help="Intensité moyenne de déforestation (0-1)"
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with kpi_col3:
+        st.markdown('<div class="kpi-container">', unsafe_allow_html=True)
+        st.metric(
+            label="Zones Critiques",
+            value=kpis["high_risk_zones"],
+            delta=f"{(kpis['high_risk_zones']/kpis['total_zones']*100):.0f}%" if kpis['total_zones'] > 0 else "0%",
+            delta_color="inverse",
+            help="Zones avec intensité > 0.7"
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with kpi_col4:
+        st.markdown('<div class="kpi-container">', unsafe_allow_html=True)
+        st.metric(
+            label="Surface Totale",
+            value=f"{kpis['total_area']} km²",
+            help="Surface totale des zones affectées"
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with kpi_col5:
+        # Couleur du badge selon le niveau de risque
+        risk_colors = {
+            "Faible": "#4CAF50",
+            "Modéré": "#2196F3", 
+            "Élevé": "#FF9800",
+            "Critique": "#F44336"
+        }
+        risk_color = risk_colors.get(kpis['risk_level'], "#9E9E9E")
+        
+        st.markdown('<div class="kpi-container">', unsafe_allow_html=True)
+        st.metric(
+            label="Niveau de Risque",
+            value=kpis['risk_level'],
+            help="Évaluation globale du risque de déforestation"
+        )
+        st.markdown(f"""
+        <div style="text-align: center; margin-top: 0.5rem;">
+            <span style="background-color: {risk_color}; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 500;">
+                {kpis['risk_level'].upper()}
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Graphiques avec encadrés
+    st.markdown("#### Visualisations Interactives")
+    
+    chart_col1, chart_col2 = st.columns(2)
+    
+    with chart_col1:
+        # Graphique en barres des intensités
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        intensity_fig = create_intensity_chart(zones_info)
+        st.plotly_chart(intensity_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Graphique de dispersion
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        scatter_fig = create_scatter_plot(zones_info)
+        st.plotly_chart(scatter_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with chart_col2:
+        # Graphique en secteurs
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        pie_fig = create_intensity_pie_chart(zones_info)
+        st.plotly_chart(pie_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Tableau détaillé avec encadré
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        st.markdown("#### Détails des Zones")
+        zones_df = pd.DataFrame([
+            {
+                "Zone": zone["name"],
+                "Intensité": f"{zone['intensity']:.2f}",
+                "Taille (km²)": zone["size"],
+                "Niveau": "Critique" if zone["intensity"] > 0.7 else "Élevé" if zone["intensity"] > 0.5 else "Modéré" if zone["intensity"] > 0.3 else "Faible"
+            }
+            for zone in zones_info
+        ])
+        
+        # Colorier le tableau selon l'intensité
+        def color_intensity(val):
+            if "Critique" in str(val):
+                return 'background-color: #ffebee; color: #d32f2f; font-weight: 500;'
+            elif "Élevé" in str(val):
+                return 'background-color: #fff3e0; color: #f57c00; font-weight: 500;'
+            elif "Modéré" in str(val):
+                return 'background-color: #e3f2fd; color: #1976d2; font-weight: 500;'
+            elif "Faible" in str(val):
+                return 'background-color: #e8f5e8; color: #2e7d32; font-weight: 500;'
+            return ''
+        
+        styled_df = zones_df.style.applymap(color_intensity, subset=['Niveau'])
+        st.dataframe(styled_df, use_container_width=True, hide_index=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Fermer le conteneur analytics
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Footer professionnel
+    st.markdown("""
+    <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%); border-radius: 12px; text-align: center; color: white;">
+        <h4 style="margin: 0; font-family: 'Inter', sans-serif;">ForestGuard AI</h4>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.9; font-size: 0.9rem;">
+            Surveillance intelligente de la déforestation mondiale • Données en temps réel • Analyse prédictive
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     pass

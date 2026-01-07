@@ -13,5 +13,8 @@ shapely>=2.0.0
 # Image processing
 Pillow>=10.0.0
 
+# Analytics and visualization
+plotly>=5.15.0
+
 # Optional: Performance improvements
 # watchdog>=3.0.0  # Uncomment for better development experience
